@@ -1,18 +1,31 @@
-## esbuild-with-global-variables
+# esbuild-with-global-variables
 
 I needed this quick fix for my project that has requirement that all JS global-variables are public.
 
 I did not have tome to deploy this solution to npm so sorry the deploy prrocess is janky and requres package to be built and deplyed offline/outside node_modules.
 
-Run choco install make
-Run choco install mingw
+## choco:
+
+Run `choco install make`
+
+Run `choco install mingw`
+
+## esbuild-with-global-variables:
 
 Clone esbuild-with-global-variables
-In esbuild-with-global-variables\npm\esbuild run npm i  
-In esbuild-with-global-variables Run make
+
+In esbuild-with-global-variables\npm\esbuild run `npm i`  
+
+In esbuild-with-global-variables Run `make`
+
+## esbuild:
 
 Move original node_modules\esbuild to other location
-Copy generated esbuild.exe to new esbuild location and substutute it with exsisting exe
+
+Copy generated esbuild-with-global-variables\esbuild.exe to new esbuild location and substutute it with exsisting .exe
+
+
+# esbuild
 
 <p align="center">
   <picture>
