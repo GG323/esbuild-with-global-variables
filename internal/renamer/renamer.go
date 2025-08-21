@@ -578,18 +578,6 @@ func (s *numberScope) findNameUse(name string) nameUse {
 }
 
 func (s *numberScope) findUnusedName(name string, ns ast.SlotNamespace) string {
-	// We may not have a valid identifier if this is an internally-constructed name
-	if ns == ast.SlotPrivateName {
-		if id := name[1:]; !js_ast.IsIdentifier(id) {
-			name = js_ast.ForceValidIdentifier("#", id)
-		}
-	} else {
-		if !js_ast.IsIdentifier(name) {
-			name = js_ast.ForceValidIdentifier("", name)
-		}
-	}
-
-	if use := s.findNameUse(name); use != nameUnused {
 		// Keep the global names unchanged
 	return name
 }
