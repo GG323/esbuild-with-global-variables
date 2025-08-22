@@ -4,6 +4,8 @@ I needed this quick fix for my project that has requirement that all JS global-v
 
 I did not have tome to deploy this solution to npm so sorry the deploy prrocess is janky and requres package to be built and deplyed offline/outside node_modules.
 
+I have highjacked `format: 'cjs'` setting to enable the public global-variables option.
+
 ## choco:
 
 Run `choco install make`
