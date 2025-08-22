@@ -12994,6 +12994,9 @@ func (p *parser) valueForThis(
 	isCallTarget bool,
 	isDeleteTarget bool,
 ) (js_ast.Expr, bool) {
+	// Don't substitute "this"
+	return js_ast.Expr{}, false
+
 	// Substitute "this" if we're inside a static class context
 	if p.fnOnlyDataVisit.shouldReplaceThisWithInnerClassNameRef {
 		p.recordUsage(*p.fnOnlyDataVisit.innerClassNameRef)
@@ -18441,7 +18444,8 @@ func (p *parser) toAST(before, parts, after []js_ast.Part, hashbang string, dire
 	}
 
 	// Make a wrapper symbol in case we need to be wrapped in a closure
-	wrapperRef := p.newSymbol(ast.SymbolOther, "require_"+p.source.IdentifierName)
+	// Undo require shenanigans
+	wrapperRef := p.newSymbol(ast.SymbolOther, `require("`+p.source.IdentifierName+`")`)
 
 	// Assign slots to symbols in nested scopes. This is some precomputation for
 	// the symbol renaming pass that will happen later in the linker. It's done

@@ -2434,30 +2434,7 @@ func (c *linkerContext) createWrapperForFile(sourceIndex uint32) {
 	// dependencies and let the general-purpose reachablity analysis take care
 	// of it.
 	case graph.WrapCJS:
-		runtimeRepr := c.graph.Files[runtime.SourceIndex].InputFile.Repr.(*graph.JSRepr)
-		commonJSParts := runtimeRepr.TopLevelSymbolToParts(c.cjsRuntimeRef)
-
-		// Generate the dummy part
-		dependencies := make([]js_ast.Dependency, len(commonJSParts))
-		for i, partIndex := range commonJSParts {
-			dependencies[i] = js_ast.Dependency{
-				SourceIndex: runtime.SourceIndex,
-				PartIndex:   partIndex,
-			}
-		}
-		partIndex := c.graph.AddPartToFile(sourceIndex, js_ast.Part{
-			SymbolUses: map[ast.Ref]js_ast.SymbolUse{
-				repr.AST.WrapperRef: {CountEstimate: 1},
-			},
-			DeclaredSymbols: []js_ast.DeclaredSymbol{
-				{Ref: repr.AST.ExportsRef, IsTopLevel: true},
-				{Ref: repr.AST.ModuleRef, IsTopLevel: true},
-				{Ref: repr.AST.WrapperRef, IsTopLevel: true},
-			},
-			Dependencies: dependencies,
-		})
-		repr.Meta.WrapperPartIndex = ast.MakeIndex32(partIndex)
-		c.graph.GenerateSymbolImportAndUse(sourceIndex, partIndex, c.cjsRuntimeRef, 1, runtime.SourceIndex)
+		// Remove the CommonJS wrapper
 
 	// If this is a lazily-initialized ESM file, we're going to need to
 	// generate a wrapper for the ESM closure. That will end up looking
