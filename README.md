@@ -35,8 +35,10 @@ Copy generated esbuild-with-global-variables\esbuild.exe to new esbuild location
 Having done this travisty to your esbuild, you may what to run esbuild ofline.
 
 To do so you must in your libs folder update your esbuild/lib/main.js
-`downloadedBinPath() - 1678 -> return path.join(esbuildLibDir, "esbuild.exe");
-generateBinPath() - 1691 -> binPath = require.resolve("./esbuild.exe");`
+
+downloadedBinPath() - 1678 -> `return path.join(esbuildLibDir, "esbuild.exe");`
+
+generateBinPath() - 1691 -> `binPath = require.resolve("./esbuild.exe");`
 
 # esbuild
 
