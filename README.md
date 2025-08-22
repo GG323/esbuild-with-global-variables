@@ -7,7 +7,7 @@ I did not have tome to deploy this solution to npm so sorry the deploy prrocess 
 I have highjacked `format: 'cjs'` setting to enable the public global-variables option. 
 And the output files needs to be .cjs 
 
-And the most of the features are affected and should not be enabled as you may guess.
+And the most of the features are affected and should not be enabled as you may guess -
 `minify, treeShaking, splitting`
 
 ## choco:
