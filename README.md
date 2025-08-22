@@ -4,7 +4,11 @@ I needed this quick fix for my project that has requirement that all JS global-v
 
 I did not have tome to deploy this solution to npm so sorry the deploy prrocess is janky and requres package to be built and deplyed offline/outside node_modules.
 
-I have highjacked `format: 'cjs'` setting to enable the public global-variables option.
+I have highjacked `format: 'cjs'` setting to enable the public global-variables option. 
+And the output files needs to be .cjs 
+
+And the most of the features are affected and should not be enabled as you may guess -
+`minify, treeShaking, splitting`
 
 ## choco:
 
@@ -26,6 +30,15 @@ Move original node_modules\esbuild to other location
 
 Copy generated esbuild-with-global-variables\esbuild.exe to new esbuild location and substutute it with exsisting .exe
 
+## Runniing in ofline mode:
+
+Having done this travisty to your esbuild, you may what to run esbuild ofline.
+
+To do so you must in your libs folder update your esbuild/lib/main.js
+
+downloadedBinPath() - 1678 -> `return path.join(esbuildLibDir, "esbuild.exe");`
+
+generateBinPath() - 1691 -> `binPath = require.resolve("./esbuild.exe");`
 
 # esbuild
 
